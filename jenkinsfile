@@ -1,6 +1,11 @@
 pipeline {
     agent any
-
+    environment {
+        AWS_ACCESS_KEY_ID = credintials('jenkins-access-key-id')
+        AWS_SECRET_ACCESS_KEY = credintials('jenkins-secret-access-key')
+        AWS_S3_BUCKET = "artifact-bucket-repo-2"
+        ARTIFACT_NAME = "hello-world.war"
+    }
     stages {
         stage('Validate') {
             steps {
@@ -34,6 +39,17 @@ pipeline {
                 }
             }
         }
+         stage('Publish artifacts to S3 Bucket') {
+            steps (
+                sh "aws configure set region us-east-1"
+                sh "aws s3 cp ./target/**.war s3://$AWS_S3_BUCKET/$ARTIFACT_NAME"
+            )
+         }
+         stage('Deploy') {
+            steps {
+                echo "Last Stage"
+            }
+         }
         
 
     }
