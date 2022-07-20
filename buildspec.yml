@@ -1,26 +1,27 @@
 version: 0.2
-phases: 
+
+phases:
   install:
-    on-failure: abort
-    runtime-versions: 
+    on-failure: ABORT
+    runtime-versions:
       java: corretto11
-  pre-build: 
-    on-failure: abort
+  pre_build:
+    on-failure: ABORT
     commands:
     - echo Build start on 'date'
-    - mvn clean 
+    - mvn clean
     - mvn validate
     - echo Build ends on 'date'
   build:
-    on-failure: abort
+    on-failure: ABORT
     commands:
     - echo Build start on 'date'
     - mvn compile
     - mvn test
     - echo Build ends on 'date'
-  post-build:
-    on-failure: abort
-    commands: 
+  post_build:
+    on-failure: ABORT
+    commands:
     - echo Build start on 'date'
     - mvn package
     - mv target/*.war helloworld.war
@@ -28,5 +29,5 @@ phases:
 
 artifacts:
   files:
-  - helloworld.war
+    - helloworld.war
   name: hello-world-artifact
