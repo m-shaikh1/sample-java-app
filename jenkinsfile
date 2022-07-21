@@ -39,7 +39,7 @@ pipeline {
             steps {
                 sh '''
                     mvn clean verify sonar:sonar \
-                    -Dsonar.projectKey=MohammedShaikh \
+                    -Dsonar.projectKey=java-mave \
                     -Dsonar.host.url=http://$SONAR_IP \
                     -Dsonar.login=$SONAR_TOKEN
                 '''
