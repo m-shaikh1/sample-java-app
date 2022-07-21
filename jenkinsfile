@@ -9,7 +9,7 @@ pipeline {
         AWS_EB_APP_VERSION = "${BUILD_ID}"
         AWS_EB_ENVIRONMENT = "Javawebapp-env-1"
         SONAR_IP = "54.226.50.200"
-        SONAR_TOKEN = "sqp_f79e559157f8e53843749740c6e6cf1bdd55f629"
+        SONAR_TOKEN = "sqp_0281803d7df6b19365c1229d5ba265817382897e"
     }
     stages {
         stage('Validate') {
